@@ -252,3 +252,98 @@ values
 (3003,3,20260301,6900000,540,3),
 (3004,4,20260401,17000000,750,0),
 (3005,5,20260501,12800000,680,2);
+
+--adicionando colunas nas tabelas 'contrato' e 'prestacao_contas'
+alter table gefus.contrato
+add data_assinatura date,
+add data_inicio date,
+add data_fim date;
+
+alter table gefus.prestacao_contas
+add data_envio date,
+add data_limite date,
+add data_aprovacao date;
+
+--excluindo iddata das tabelas 'contrato' e 'prestacao_contas'
+alter table gefus.contrato
+drop column Iddata;
+
+alter table gefus.prestacao_contas
+drop constraint fk_prest_data;
+
+alter table gefus.prestacao_contas
+drop column Iddata;
+
+--inserindo dados para as novas colunas das tabelas 'contrato' e 'prestacao_contas'
+-- tabela contrato
+update gefus.contrato
+set
+    Data_Assinatura = '2026-01-15',
+    Data_Inicio = '2026-02-01',
+    Data_Fim = '2027-12-31'
+where Idcontrato = 1001;
+
+update gefus.contrato
+set
+    Data_Assinatura = '2026-02-10',
+    Data_Inicio = '2026-03-01',
+    Data_Fim = '2027-06-30'
+where Idcontrato = 1002;
+
+update gefus.contrato
+set
+    Data_Assinatura = '2026-03-05',
+    Data_Inicio = '2026-03-20',
+    Data_Fim = '2028-03-31'
+where Idcontrato = 1003;
+
+update gefus.contrato
+set
+    Data_Assinatura = '2026-04-12',
+    Data_Inicio = '2026-05-01',
+    Data_Fim = '2026-12-31'
+where Idcontrato = 1004;
+
+update gefus.contrato
+set
+    Data_Assinatura = '2026-05-18',
+    Data_Inicio = '2026-06-01',
+    Data_Fim = '2027-11-30'
+where Idcontrato = 1005;
+
+--tabela prestacao_contas
+update gefus.prestacao_contas
+set
+    Data_Envio = '2026-01-20',
+    Data_Limite = '2026-02-15',
+    Data_Aprovacao = '2026-02-10'
+where Idprestacao = 2001;
+
+update gefus.prestacao_contas
+set
+    Data_Envio = '2026-02-18',
+    Data_Limite = '2026-03-15',
+    Data_Aprovacao = NULL
+where Idprestacao = 2002;
+
+update gefus.prestacao_contas
+set
+    Data_Envio = '2026-03-22',
+    Data_Limite = '2026-04-15',
+    Data_Aprovacao = '2026-04-05'
+where Idprestacao = 2003;
+
+update gefus.prestacao_contas
+set
+    Data_Envio = '2026-04-25',
+    Data_Limite = '2026-05-15',
+    Data_Aprovacao = '2026-05-10'
+where Idprestacao = 2004;
+
+update gefus.prestacao_contas
+set
+    Data_Envio = '2026-05-30',
+    Data_Limite = '2026-06-15',
+    Data_Aprovacao = NULL
+where Idprestacao = 2005;
+
